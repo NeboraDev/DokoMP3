@@ -1,0 +1,69 @@
+package mp3;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
+
+public class MP3 extends JFrame implements ActionListener
+{
+
+	//Window Size
+	int res = 3;
+	int windowX = 1920 / res;
+	int windowY = 1080 / res;
+	
+	//Java Application Add-ons
+	
+	
+	JLabel title = new JLabel("DokoMP3");
+
+	//The Menu Bar
+	JMenuBar menuBar = new JMenuBar();
+	
+	//The Menu Items
+	JMenuItem jSave = new JMenuItem("Save");
+	JMenuItem jImport = new JMenuItem("Import");
+	JMenuItem jExit = new JMenuItem("Exit");
+	
+	//The Menu
+	JMenu file = new JMenu("File");
+	
+	public MP3()
+	{
+		super("DokoMP3"); //Title of the application.
+		setVisible(true); //sets the application visible.
+		setSize(windowX, windowY); //sets the size.
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Closes the application.
+		setLocationRelativeTo(null); //center app
+		
+		setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER)); //organizes the application
+		
+		//adds the Java Application Add-ons
+		add(title);
+		
+		setJMenuBar(menuBar); //Adds the menu bar.
+		menuBar.add(file);
+		file.add(jSave); jSave.addActionListener(this);
+		file.add(jImport); jImport.addActionListener(this);
+		file.add(jExit); jExit.addActionListener(this);
+	}
+	
+	public static void main(String[] args)
+	{
+
+		MP3 frame = new MP3(); //calls the method MP3
+		frame.setVisible(true); //sets the application to visible. 
+		
+	}
+	
+	public void actionPerformed(ActionEvent e)
+	{
+		
+		if(e.getSource() == jSave) { }
+		if(e.getSource() == jImport) { } 
+		if(e.getSource() == jExit) { dispose(); }
+	}
+	
+
+}
