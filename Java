@@ -2,6 +2,7 @@ package mp3;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
 
 import javax.swing.*;
 
@@ -12,6 +13,7 @@ public class MP3 extends JFrame implements ActionListener
 	int res = 3;
 	int windowX = 1920 / res;
 	int windowY = 1080 / res;
+	int[] song = new int[1];
 	
 	//Java Application Add-ons
 	
@@ -25,6 +27,8 @@ public class MP3 extends JFrame implements ActionListener
 	JMenuItem jSave = new JMenuItem("Save");
 	JMenuItem jImport = new JMenuItem("Import");
 	JMenuItem jExit = new JMenuItem("Exit");
+	
+	//The Menu Items Actions
 	
 	//The Menu
 	JMenu file = new JMenu("File");
@@ -55,15 +59,85 @@ public class MP3 extends JFrame implements ActionListener
 		MP3 frame = new MP3(); //calls the method MP3
 		frame.setVisible(true); //sets the application to visible. 
 		
+		
+		
 	}
 	
 	public void actionPerformed(ActionEvent e)
 	{
 		
-		if(e.getSource() == jSave) { }
-		if(e.getSource() == jImport) { } 
+		if(e.getSource() == jSave) { MP3Set fileChooser = new MP3Set(); fileChooser.JFileSave(); } //Opens a save file.
+		if(e.getSource() == jImport) { MP3Set fileChooser = new MP3Set(); fileChooser.JFileImport(); } //Opens a import file.
 		if(e.getSource() == jExit) { dispose(); }
 	}
 	
 
+}
+
+//MP3Set
+
+package mp3;
+
+import java.io.File;
+
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+public class MP3Set {
+	
+	private File file;
+	
+	public MP3Set()
+	{
+		
+		
+		
+	}
+	
+	public File file()
+	{
+		
+		return file;
+		
+	}
+	
+	public File JFileImport()
+	{
+		
+		JFileChooser chooser = new JFileChooser();
+		
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("mp3", "wav");
+		chooser.setFileFilter(filter);
+		
+		int returnVal = chooser.showOpenDialog(null);
+		
+		if (returnVal == JFileChooser.APPROVE_OPTION)
+		{
+	
+			File file = chooser.getSelectedFile();
+			
+		}
+		
+		return file;
+	}
+	
+	public File JFileSave()
+	{
+		
+		JFileChooser chooser = new JFileChooser();
+		
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("mp3", "wav");
+		chooser.setFileFilter(filter);
+		
+		int returnVal = chooser.showSaveDialog(null);
+		
+		if (returnVal == JFileChooser.APPROVE_OPTION)
+		{
+	
+			File file = chooser.getSelectedFile();
+			
+		}
+		
+		return file;
+	}
 }
